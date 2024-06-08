@@ -1,0 +1,30 @@
+#include <Arduino.h>
+
+int latche = 11;
+int clock = 9;
+int data = 12;
+
+int dt = 500;
+
+
+void setup()
+{
+  pinMode(latche, OUTPUT);
+  pinMode(clock, OUTPUT);
+  pinMode(data, OUTPUT);
+
+  Serial.begin(9600);
+}
+
+void loop()
+{
+
+  for (int i=0 ; i <= 0XFF; i++)
+{
+    Serial.println(i, HEX);
+    digitalWrite(latche, HIGH);
+    shiftOut(data, clock, LSBFIRST, i);
+    digitalWrite(latche, LOW);
+    delay(dt);
+  }
+}
